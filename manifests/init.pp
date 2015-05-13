@@ -20,5 +20,5 @@
 # BSD-license. See file LICENSE for details.
 #
 class libvirt {
-    include libvirt::install
+    include ::libvirt::install
 }

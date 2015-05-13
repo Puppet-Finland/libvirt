@@ -3,10 +3,10 @@
 #
 # Install libvirt
 #
-class libvirt::install {
+class libvirt::install inherits libvirt::params {
 
     package { 'libvirt':
-        name => 'libvirt-bin',
         ensure => installed,
+        name   => $::libvirt::params::package_name,
     }
 }
