@@ -9,6 +9,9 @@ class libvirt::params {
         'Debian': {
             $package_name = 'libvirt-bin'
         }
+        'RedHat': {
+            $package_name = 'libvirt-daemon-kvm'
+        }
         default: {
             fail("Unsupported OS: ${::osfamily}")
         }
