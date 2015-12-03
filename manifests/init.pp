@@ -9,7 +9,7 @@
 #
 # == Examples
 #
-#   include libvirt
+#   include ::libvirt
 #
 # == Authors
 #

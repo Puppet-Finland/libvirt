@@ -5,8 +5,7 @@
 #
 class libvirt::install inherits libvirt::params {
 
-    package { 'libvirt':
+    package { $::libvirt::params::packages:
         ensure => installed,
-        name   => $::libvirt::params::package_name,
     }
 }

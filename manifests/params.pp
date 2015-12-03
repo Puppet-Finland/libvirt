@@ -7,10 +7,10 @@ class libvirt::params {
 
     case $::osfamily {
         'Debian': {
-            $package_name = 'libvirt-bin'
+            $packages = [ 'libvirt0', 'libvirt-daemon', 'libvirt-daemon-system', 'libvirt-clients', 'virtinst', 'qemu', 'qemu-kvm' ]
         }
         'RedHat': {
-            $package_name = 'libvirt-daemon-kvm'
+            $packages = [ 'libvirt', 'libvirt-daemon', 'libvirt-daemon-kvm', 'libvirt-client', 'virt-install', 'qemu', 'qemu-kvm' ]
         }
         default: {
             fail("Unsupported OS: ${::osfamily}")
