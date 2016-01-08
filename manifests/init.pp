@@ -19,6 +19,12 @@
 #
 # BSD-license. See file LICENSE for details.
 #
-class libvirt {
-    include ::libvirt::install
+class libvirt
+(
+    $virt_install_ensure = present
+)
+{
+    class { '::libvirt::install':
+        virt_install_ensure => $virt_install_ensure,
+    }
 }
