@@ -9,6 +9,11 @@ class libvirt::install
 
 ) inherits libvirt::params {
 
+    Package {
+        require => Class['libvirt::prequisites'],
+    }
+
+
     # Install a basic set of packages
     package { $::libvirt::params::packages:
         ensure => installed,

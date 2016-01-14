@@ -24,6 +24,8 @@ class libvirt
     $virt_install_ensure = present
 )
 {
+    include ::libvirt::prequisites
+
     class { '::libvirt::install':
         virt_install_ensure => $virt_install_ensure,
     }
