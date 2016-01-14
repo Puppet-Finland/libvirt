@@ -5,7 +5,7 @@
 #
 class libvirt::prequisites inherits libvirt::params {
 
-    if $::osfamily == 'Redhat' {
+    if $::osfamily == 'RedHat' {
         # Qemu comes from the EPEL repository
         include ::epel
     }
