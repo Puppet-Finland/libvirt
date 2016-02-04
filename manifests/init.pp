@@ -10,6 +10,9 @@
 # [*manage_config*]
 #   Manage libvirt config with Puppet. Valid values are true (default) and 
 #   false.
+# [*manage_packetfilter*]
+#   Manage libvirt packetfilter with Puppet. Valid values are true (default) and 
+#   false.
 # [*virt_install_ensure*]
 #   Status of the virt-install package. Valid values are 'present' (default) and 
 #   'absent'.
@@ -21,6 +24,12 @@
 # [*vnc_listen*]
 #   The interface to listen for VNC connections. Defaults to '127.0.0.1'. Use
 #   '0.0.0.0' to listen on all interfaces.
+# [*allow_port*]
+#   Port or port range to open for VNC access. If you're using autoport on the 
+#   virtual machines, then the first VM will get assigned port 5900 for VNC, the 
+#   next one will get 5901 and so on. Default value is '5900-5920'], which is 
+#   probably reasonable for most setups. Other examples: '5900', 
+#   ['5900','5901'].
 #
 # == Authors
 #
@@ -34,10 +43,12 @@ class libvirt
 (
     $manage = true,
     $manage_config = true,
+    $manage_packetfilter = true,
     $virt_install_ensure = 'present',
     $service_ensure = undef,
     $service_enable = true,
-    $vnc_listen = '127.0.0.1'
+    $vnc_listen = '127.0.0.1',
+    $allow_port = '5900-5920'
 )
 {
     if $manage {
@@ -65,6 +76,12 @@ class libvirt
         class { '::libvirt::service':
             service_ensure => $service_ensure,
             service_enable => $service_enable,
+        }
+
+        if $manage_packetfilter {
+            class { '::libvirt::packetfilter':
+                allow_port => $allow_port,
+            }
         }
     }
 }
