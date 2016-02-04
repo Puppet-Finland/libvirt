@@ -30,6 +30,9 @@
 #   next one will get 5901 and so on. Default value is '5900-5920'], which is 
 #   probably reasonable for most setups. Other examples: '5900', 
 #   ['5900','5901'].
+# [*allow_user*]
+#   A single username or an array of usernames that are allowed to connect to 
+#   libvirtd, e.g. using virt-manager.
 #
 # == Authors
 #
@@ -48,7 +51,8 @@ class libvirt
     $service_ensure = undef,
     $service_enable = true,
     $vnc_listen = '127.0.0.1',
-    $allow_port = '5900-5920'
+    $allow_port = '5900-5920',
+    $allow_user = undef
 )
 {
     if $manage {
@@ -70,6 +74,7 @@ class libvirt
         if $manage_config {
             class { '::libvirt::config':
                 vnc_listen => $vnc_listen,
+                allow_user => $allow_user,
             }
         }
 
