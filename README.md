@@ -43,6 +43,7 @@ See [metadata.json](metadata.json).
 This module has been tested on
 
 * Debian 7 and 8
+* CentOS 7
 
 Any *NIX-style operating system should work out of the box or with small
 modifications.
