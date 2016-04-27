@@ -33,6 +33,11 @@
 # [*allow_user*]
 #   A single username or an array of usernames that are allowed to connect to 
 #   libvirtd, e.g. using virt-manager.
+# [*networks*]
+#   A hash of libvirt::network to realize. Currently the resources can only 
+#   remove networks, not create them. The primary use-case for libvirt::network 
+#   define is, for now, to remove the default network, which disables libvirt- 
+#   integrated dnsmasq.
 #
 # == Authors
 #
@@ -52,7 +57,8 @@ class libvirt
     $service_enable = true,
     $vnc_listen = '127.0.0.1',
     $allow_port = '5900-5920',
-    $allow_user = undef
+    $allow_user = undef,
+    $networks = {}
 )
 {
     if $manage {
@@ -88,5 +94,6 @@ class libvirt
                 allow_port => $allow_port,
             }
         }
+        create_resources('libvirt::network', $networks)
     }
 }

@@ -22,4 +22,6 @@ class libvirt::params {
             fail("Unsupported OS: ${::osfamily}")
         }
     }
+
+    $networks = '/etc/libvirt/qemu/networks'
 }
