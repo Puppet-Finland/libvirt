@@ -27,8 +27,8 @@
 # [*allow_port*]
 #   Port or port range to open for VNC access. If you're using autoport on the 
 #   virtual machines, then the first VM will get assigned port 5900 for VNC, the 
-#   next one will get 5901 and so on. Default value is '5900-5920'], which is 
-#   probably reasonable for most setups. Other examples: '5900', 
+#   next one will get 5901 and so on. Default value is '5900-5920', which is
+#   probably reasonable for most setups. Other examples: '5900',
 #   ['5900','5901'].
 # [*allow_user*]
 #   A single username or an array of usernames that are allowed to connect to 
